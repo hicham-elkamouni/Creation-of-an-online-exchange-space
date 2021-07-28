@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center">
-        <div class="w-6/12 bg-gray-50 p-6 rounded-lg">
+        <div class="w-4/12 bg-gray-50 p-6 rounded-lg">
             <h1 class="mb-4 text-center">POSTS</h1>
             <form action="{{route('posts')}}" method="post" class="mb-4">
                 @csrf
@@ -28,16 +28,19 @@
             <div class="my-3">
                 @foreach ($posts as $post)
                 <div class="border-2 border- my-4 p-4 rounded-lg">
-                    <a href="" class="text-red-600 font-bold ">{{ $post->user->name }}</a>
+                    <a href="" class="text-red-600 font-bold ">{{ $post->user->name }}'s post</a>
                     <p class="my-2 text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</p>
                     <p class="mb-5">{{ $post->body }}</p>
                     
-                        <form action="{{route('posts.destroy', $post)}}" method="post">
+                    @if ($post->ownedBy(auth()->user()))
+                    <div>
+                        <form action="{{route('destroy', $post)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500">Delete</button>
                         </form>
-                    
+                    </div>
+                    @endif
                 </div>
                 @endforeach
                 <div class="">

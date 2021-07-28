@@ -22,7 +22,7 @@ class Post extends Model
 
     public function ownedBy(User $user)
     {
-        return $user->id === this->user_id;
+        return $user->id === $this->user_id;
         // return true if they match or return false
     }
 

@@ -23,7 +23,7 @@ Route::post('/register', [RegisterController::class, 'insert']);
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'insert_post']);
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');;
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');;
 
 
 

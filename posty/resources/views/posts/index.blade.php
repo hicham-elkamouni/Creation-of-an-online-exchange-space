@@ -32,7 +32,7 @@
                     <p class="my-2 text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</p>
                     <p class="mb-5">{{ $post->body }}</p>
                     
-                    @if ($post->ownedBy(auth()->user()))
+                    @can('delete', $post)
                     <div>
                         <form action="{{route('destroy', $post)}}" method="post">
                             @csrf
@@ -40,7 +40,7 @@
                             <button type="submit" class="text-red-500">Delete</button>
                         </form>
                     </div>
-                    @endif
+                    @endcan
                 </div>
                 @endforeach
                 <div class="">

@@ -24,6 +24,11 @@ class PostPolicy
     {
         return $user->id === $post->user_id;
        // return true if they match or return false
+    }
 
+    public function update(User $user,Post $post)
+    {
+        return $user->id === $post->user_id;
+       // return true if they match or return false
     }
 }

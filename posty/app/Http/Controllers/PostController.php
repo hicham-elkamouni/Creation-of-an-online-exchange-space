@@ -31,9 +31,23 @@ class PostController extends Controller
     public function destroy(Post $post){
 
         $this->authorize('delete', $post);
-
         $post->delete();
         return back();
 
+    }
+
+    public function get_update(Post $post){
+        $data = Post::find($post);
+        return view('posts.updatePost' ,[
+            'data' => $data
+        ]);
+    }
+
+
+    public function post_update(Request $request){
+        $data = Post::find($request->id);
+        $data->body = $request->body;
+        $data->save();
+        return redirect('posts');
     }
 }

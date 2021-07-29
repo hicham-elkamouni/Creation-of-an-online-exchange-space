@@ -28,7 +28,7 @@
             <div class="my-3">
                 @foreach ($posts as $post)
                 <div class="border-2 border- my-4 p-4 rounded-lg">
-                    <a href="" class="text-red-600 font-bold ">{{ $post->user->name }}'s post</a>
+                    <a href="" class="text-black-600 font-bold text-center">{{ $post->user->name }}'s post</a>
                     <p class="my-2 text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</p>
                     <p class="mb-5">{{ $post->body }}</p>
                     
@@ -37,7 +37,19 @@
                         <form action="{{route('destroy', $post)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="text-red-500">Delete</button>
+                            <button type="submit"  class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-4 border border-red-500 hover:border-transparent rounded">Delete</button>
+                        </form>
+                    </div>
+                    @endcan
+                    
+                    @can('update', $post)
+                    <div>
+                        <form action="{{route('get.update', $post)}}" method="get">
+                            @csrf
+                            @method('UPDATE')
+                            <button type="submit"  
+                            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border 
+                            border-blue-500 hover:border-transparent rounded">Update</button>
                         </form>
                     </div>
                     @endcan

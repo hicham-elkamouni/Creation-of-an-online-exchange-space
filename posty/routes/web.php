@@ -21,6 +21,7 @@ Route::post('/login', [LoginController::class, 'sign_in']);
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'insert']);
 
+// post read post delete
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'insert_post']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('destroy');
